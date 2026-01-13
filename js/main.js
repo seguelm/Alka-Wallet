@@ -44,6 +44,29 @@ function updateHero() {
   if (heroAmountEl) heroAmountEl.textContent = formatCLP(value);
   if (heroDateEl) heroDateEl.textContent = data.fecha;
 }
+// ==============================
+// Tarjetas: actualizar montos chicos
+// ==============================
+function updateAccountCards() {
+  accountCards.forEach((card) => {
+    const accountType = card.dataset.account;
+    const data = accountBalances[accountType];
+    if (!data) return;
+
+    // Buscar el <p> del monto dentro de la tarjeta
+    const amountEl = card.querySelector('[data-field="amount"]');
+    if (!amountEl) return;
+
+    // En crédito usamos "disponible"
+    const value =
+      accountType === 'credito'
+        ? data.disponible
+        : data.saldo;
+
+    amountEl.textContent = formatCLP(value);
+  });
+}
+
 
 // ==============================
 // Tarjetas: selección de cuenta
@@ -63,6 +86,9 @@ accountCards.forEach((card) => {
 
     // 4) Actualizar el HERO con la cuenta activa
     updateHero();
+
+    updateAccountCards();
+
 
     // Debug simple
     console.log('Cuenta activa:', activeAccount);

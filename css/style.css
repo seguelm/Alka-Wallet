@@ -1,15 +1,59 @@
+/* =========================
+   VARIABLES DE COLOR (UI BASE)
+   ========================= */
 :root {
   --color-principal: #8fcfb1;
   --color-secundario: #6fbf9a;
   --color-fondo: #f7fbf9;
   --color-texto: #2f2f2f;
 }
+
+/* =========================
+   ESTILOS BASE DEL DOCUMENTO
+   ========================= */
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--color-fondo);
   color: var(--color-texto);
 }
+
+/* =========================
+   NORMALIZACIÓN DE CAJAS
+   ========================= */
+
 * {
   box-sizing: border-box;
 }
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+   ========================= */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* TITULO PRINCIPAL */
+h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+/* SUBTITULOS */
+h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+/* TEXTO NORMAL */
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+

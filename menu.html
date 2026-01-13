@@ -46,87 +46,98 @@
        CONTENIDO PRINCIPAL
        ========================= -->
     <main class="container">
-  <!-- =========================
+        <!-- =========================
        HOME (referencia tipo "My Balance")
        Arriba: saldo grande
        Medio: tarjetas Spent/Income
        Abajo: movimientos
        ========================= -->
 
-  <!-- HEADER / HERO -->
-  <section class="hero">
+        <!-- HEADER / HERO -->
+<section class="hero">
+
     <!-- Título arriba -->
     <div class="hero-top">
-      <p class="hero-title">Mi saldo:</p>
+        <p class="hero-title">Mi saldo:</p>
     </div>
 
-    <!-- Saldo grande -->
-    <p class="hero-balance">$0</p>
+    <!-- Saldo grande del HERO -->
+    <!-- id usado por JS para cambiar el monto según la cuenta activa -->
+    <p class="hero-balance" id="hero-amount">$0</p>
 
-    <!-- Fecha (texto chiquito) -->
-    <p class="hero-date">Mar, 13 Ene 2026</p>
-  </section>
+    <!-- Fecha del saldo -->
+    <!-- id usado por JS para actualizar la fecha -->
+    <p class="hero-date" id="hero-date">Mar, 13 Ene 2026</p>
 
-<!-- =========================
+</section>
+
+
+        <!-- =========================
          CUENTAS (CAJITAS)
-         - Por defecto: Cuenta Corriente activa
          ========================= -->
-    <section class="accounts" aria-label="Cuentas">
-      <button class="account-card active" type="button">
-        <p class="account-name">Cuenta Corriente</p>
-        <p class="account-label">Saldo </p>
-        <p class="account-amount">$0</p>
-      </button>
 
-      <button class="account-card" type="button">
-        <p class="account-name">Tarjeta de Crédito</p>
-        <p class="account-label">Disponible</p>
-        <p class="account-amount">$0</p>
-      </button>
+        <section class="accounts" aria-label="Cuentas">
 
-      <button class="account-card" type="button">
-        <p class="account-name">Cuenta de Ahorro</p>
-        <p class="account-label">Saldo</p>
-        <p class="account-amount">$0</p>
-      </button>
-    </section>
+            <!-- Tarjeta: Cuenta Corriente -->
+            <!-- data-account le dice a JS qué tipo de cuenta es -->
+            <button class="account-card active" type="button" data-account="corriente">
+                <p class="account-name">Cuenta Corriente</p>
+                <p class="account-label">Saldo </p>
+                <p class="account-amount">$0</p>
+            </button>
+
+            <!-- Tarjeta: Tarjeta de Crédito -->
+            <button class="account-card" type="button" data data-account="credito">
+
+                <p class="account-name">Tarjeta de Crédito</p>
+                <p class="account-label">Disponible</p>
+                <p class="account-amount">$0</p>
+            </button>
+
+            <!-- Tarjeta: Cuenta de Ahorro -->
+            <button class="account-card" type="button" data-account="ahorro">
+                <p class="account-name">Cuenta de Ahorro</p>
+                <p class="account-label">Saldo</p>
+                <p class="account-amount">$0</p>
+            </button>
+        </section>
 
 
-  <!-- MOVIMIENTOS -->
-  <section class="transactions">
-    <h2>Hoy</h2>
+        <!-- MOVIMIENTOS -->
+        <section class="transactions">
+            <h2>Hoy</h2>
 
-    <div class="card tx-list">
-      <div class="tx-item">
-        <div>
-          <p class="tx-name">Café</p>
-          <p class="tx-sub">Pago</p>
-        </div>
-        <p class="tx-amount stat-negative">-$5.000</p>
-      </div>
+            <div class="card tx-list">
+                <div class="tx-item">
+                    <div>
+                        <p class="tx-name">Café</p>
+                        <p class="tx-sub">Pago</p>
+                    </div>
+                    <p class="tx-amount stat-negative">-$5.000</p>
+                </div>
 
-      <div class="tx-item">
-        <div>
-          <p class="tx-name">Sueldo</p>
-          <p class="tx-sub">Ingreso</p>
-        </div>
-        <p class="tx-amount stat-positive">$500.000</p>
-      </div>
-    </div>
+                <div class="tx-item">
+                    <div>
+                        <p class="tx-name">Sueldo</p>
+                        <p class="tx-sub">Ingreso</p>
+                    </div>
+                    <p class="tx-amount stat-positive">$500.000</p>
+                </div>
+            </div>
 
-    <h2>Ayer</h2>
+            <h2>Ayer</h2>
 
-    <div class="card tx-list">
-      <div class="tx-item">
-        <div>
-          <p class="tx-name">Transferencia</p>
-          <p class="tx-sub">Enviada</p>
-        </div>
-        <p class="tx-amount stat-negative">-$20.000</p>
-      </div>
-    </div>
-  </section>
-</main>
+            <div class="card tx-list">
+                <div class="tx-item">
+                    <div>
+                        <p class="tx-name">Transferencia</p>
+                        <p class="tx-sub">Enviada</p>
+                    </div>
+                    <p class="tx-amount stat-negative">-$20.000</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
 
     <!-- =========================
@@ -141,6 +152,8 @@
        JAVASCRIPT
        ========================= -->
     <script src="js/main.js"></script>
+
+  
 
 </body>
 

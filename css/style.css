@@ -125,27 +125,36 @@ p {
 .hero {
   background-color: var(--color-principal);
   color: #ffffff;
-  /* padding distinto por lado */
-  padding-top: 60px;
-  padding-right: 80px;
-  padding-bottom: 60px;
-  padding-left: 80px;
+
+  padding-top: 20px;
+  padding-right: clamp(16px, 6vw, 80px);
+  padding-bottom: 20px;
+  padding-left: clamp(16px, 6vw, 80px);
+
   border-radius: 16px;
-text-align: center; /* centra el texto */
+  text-align: center;
+
+  /* ✅ Layout estable: 3 zonas (arriba / centro / abajo) */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+
+  min-height: 220px;
 }
+
+
 
 /* fila de arriba: título a la izquierda, botón a la derecha */
 .hero-top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  align-self: start; /* 👈 se va hacia el borde superior */
 }
 
+
 .hero-title {
-  margin-top: -25px; /* lo sube */
-  margin-bottom: 30px;
+  margin: 0; /* sin negativos */
   font-size: 16px;
 }
+
 
 .menu-btn {
   background: transparent;
@@ -164,13 +173,14 @@ text-align: center; /* centra el texto */
 
 /* fecha chiquita */
 .hero-date {
-  margin-top: 30px;
-  margin-bottom: -25px; /* lo baja */
+  align-self: end; /* 👈 se va hacia el borde inferior */
+  margin: 0;       /* negativos me desconfiguraron el layout */
   font-size: 11px;
   opacity: 0.9;
-  font-style:italic;
-
+  font-style: italic;
 }
+
+
 
 /* =========================
    SELECTOR DE CUENTAS

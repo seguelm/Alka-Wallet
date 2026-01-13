@@ -168,4 +168,101 @@ text-align: center; /* centra el texto */
   margin-bottom: -25px; /* lo baja */
   font-size: 11px;
   opacity: 0.9;
+  font-style:italic;
+
+}
+
+/* =========================
+   SELECTOR DE CUENTAS
+   ========================= */
+.account-selector {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.account-btn {
+  flex: 1; /* todos del mismo ancho */
+  padding: 14px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--color-principal);
+  background-color: #ffffff;
+  color: var(--color-principal);
+  font-size: 14px;
+  cursor: pointer;
+}
+/* BOTÓN DE CUENTA ACTIVO */
+.account-btn.active {
+  background-color: var(--color-principal);
+  color: #ffffff;
+  border-color: var(--color-principal);
+}
+
+/* =========================
+   CUENTAS: 3 CAJITAS ALINEADAS
+   ========================= */
+.accounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* también en teléfono */
+  gap: 12px;
+  margin: 18px 0 8px 0;
+}
+
+.account-card {
+  text-align: left;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px; /* cuadradita */
+  padding: 12px;
+
+  /* botón sin estilo feo */
+  cursor: pointer;
+
+  /* clave para alinear montos */
+  display: grid;
+  grid-template-rows: auto auto 1fr; /* nombre / label / monto */
+  min-height: 120px;
+}
+
+.account-card p {
+  margin: 0;
+}
+
+.account-name {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.account-label {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-top: 6px;
+  min-height: 32px;
+}
+
+/* monto abajo alineado */
+.account-amount {
+  align-self: end;     /* baja al final de la tarjeta */
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-principal, #2fb7a0);
+}
+
+/* estado activo: cambia color */
+.account-card.active {
+  border-color: var(--color-principal, #2fb7a0);
+  background-color: rgba(47, 183, 160, 0.12);
+}
+
+.account-card.active .account-amount {
+  color: var(--color-secundario, #ff8a2a); /* naranjo de contraste */
+}
+
+/* en pantallas muy angostas, hacemos el texto un poquito más chico */
+@media (max-width: 360px) {
+  .account-name { font-size: 12px; }
+  .account-label { font-size: 11px; }
+  .account-amount { font-size: 16px; }
+  .account-card { padding: 10px; min-height: 110px; }
 }

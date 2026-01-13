@@ -67,12 +67,29 @@
     <p class="hero-date">Mar, 13 Ene 2026</p>
   </section>
 
-  <!-- SELECTOR DE CUENTAS (3 botones) -->
-<section class="account-selector">
-  <button class="account-btn active" type="button">Cuenta Corriente</button>
-  <button class="account-btn" type="button">Tarjeta de Crédito</button>
-  <button class="account-btn" type="button">Cuenta de Ahorro</button>
-</section>
+<!-- =========================
+         CUENTAS (CAJITAS)
+         - Por defecto: Cuenta Corriente activa
+         ========================= -->
+    <section class="accounts" aria-label="Cuentas">
+      <button class="account-card active" type="button">
+        <p class="account-name">Cuenta Corriente</p>
+        <p class="account-label">Saldo </p>
+        <p class="account-amount">$0</p>
+      </button>
+
+      <button class="account-card" type="button">
+        <p class="account-name">Tarjeta de Crédito</p>
+        <p class="account-label">Disponible</p>
+        <p class="account-amount">$0</p>
+      </button>
+
+      <button class="account-card" type="button">
+        <p class="account-name">Cuenta de Ahorro</p>
+        <p class="account-label">Saldo</p>
+        <p class="account-amount">$0</p>
+      </button>
+    </section>
 
 
   <!-- MOVIMIENTOS -->

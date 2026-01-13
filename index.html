@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-    <!-- =========================
+<!-- =========================
      DOCUMENTO HTML
      Idioma: Español
      Proyecto: Alke Wallet
@@ -14,12 +14,12 @@
     <!-- Permite que se vean bien los acentos y caracteres especiales -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Hace que la página sea responsive -->
+    <!-- Hace que la página sea responsive -->
 
     <title>Alke Wallet</title>
     <!-- Título que aparece en la pestaña del navegador -->
-<link rel="stylesheet" href="css/style.css">
- <!-- Conecta el HTML con el archivo CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Conecta el HTML con el archivo CSS -->
 
 </head>
 
@@ -30,12 +30,13 @@
        ========================= -->
     <header>
         <h1>Alke Wallet</h1>
-         <!-- Navegación principal -->
+        <!-- Navegación principal -->
         <nav>
             <ul>
                 <li>
-                    <a href="#">Inicio</a></li>
-                
+                    <a href="#">Inicio</a>
+                </li>
+
             </ul>
 
         </nav>
@@ -45,19 +46,76 @@
        CONTENIDO PRINCIPAL
        ========================= -->
     <main class="container">
+        <!-- 
+      container:
+      - centra el contenido
+      - controla el ancho
+      - hace que se vea ordenado
+    -->
 
-        <!-- Sección principal de información -->
-        <section>
-            <h2>Resumen</h2>
-            <p>Balance actual de la cuenta</p>
+    <!-- TÍTULO GENERAL DE LA PANTALLA -->
+    <h2>Resumen</h2>
+    <!-- =========================
+         GRID DE TARJETAS
+         Aquí van varias "cards"
+         ========================= -->
+    <section class="grid">
+      <!-- 
+        grid:
+        - es solo un contenedor
+        - agrupa las tarjetas
+        - luego con CSS se ordena
+      -->
 
-        </section>
-       
+      <!-- =========================
+           CARD 1: SALDO
+           ========================= -->
+      <div class="card resumen">
+        <!-- 
+          card:
+          - es una tarjeta
+          - todo lo que esté dentro se ve como un bloque
+        -->
 
+<!-- CARD 1: SALDO -->
+        <h3>Saldo</h3>
+        <p>
+          Saldo disponible:
+          <!-- 
+            span:
+            - encierra SOLO el número
+            - permite darle estilo
+              sin afectar el texto
+          -->
+          <span class="saldo">$0</span>
+        </p>
+        </div>
+<!-- =========================
+           CARD 2: MOVIMIENTOS
+           ========================= -->
+      <div class="card">
+        <h3>Movimientos</h3>
+        <p>
+          Aquí van tus movimientos recientes.
+        </p>
+      </div>
 
+      <!-- =========================
+           CARD 3: ACCIONES
+           ========================= -->
+      <div class="card">
+        <h3>Acciones</h3>
+        <p>
+          Enviar, recibir, pagar, etc.
+          (después se transforman en botones)
+        </p>
+      </div>
+    </section>
+
+    
     </main>
 
-<!-- =========================
+    <!-- =========================
        FOOTER
        ========================= -->
     <footer>
@@ -65,7 +123,7 @@
 
     </footer>
 
-     <!-- =========================
+    <!-- =========================
        JAVASCRIPT
        ========================= -->
     <script src="js/main.js"></script>

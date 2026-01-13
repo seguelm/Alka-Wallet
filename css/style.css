@@ -2,11 +2,16 @@
    VARIABLES DE COLOR (UI BASE)
    ========================= */
 :root {
-  --color-principal: #8fcfb1;
-  --color-secundario: #6fbf9a;
-  --color-fondo: #f7fbf9;
-  --color-texto: #2f2f2f;
+  /* Colores principales */
+  --color-principal: #00B8B0;   /* Turquesa fuerte */
+  --color-secundario: #F28C38;  /* Naranjo (acento) */
+
+  /* Apoyos */
+  --color-oscuro: #0B6E6B;
+  --color-fondo: #F5FFFD;
+  --color-texto: #1E2A2A;
 }
+
 
 /* =========================
    ESTILOS BASE DEL DOCUMENTO
@@ -56,4 +61,53 @@ p {
   margin-bottom: 12px;
 }
 
+/* RESUMEN */
+.resumen {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  border-radius: 12px;
+}
+/* TITULO DEL RESUMEN */
+.resumen h2 {
+  color: var(--color-secundario);
+}
+/* TEXTO DENTRO DEL RESUMEN */
+.resumen p {
+  margin: 8px 0;
+  
+}
 
+/* SALDO */
+.saldo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-principal);
+}
+/* =========================
+   GRID DE TARJETAS
+   ========================= */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* =========================
+   TARJETAS (CARDS)
+   ========================= */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* =========================
+   GRID EN PANTALLAS GRANDES
+   ========================= */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -103,6 +103,13 @@ p {
   padding: 16px;
 }
 
+/* TITULO DEL SALDO (CARD RESUMEN) */
+.resumen h3 {
+  color: var(--color-secundario);
+  margin-top: 8;
+}
+
+
 /* =========================
    GRID EN PANTALLAS GRANDES
    ========================= */
@@ -110,4 +117,55 @@ p {
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* =========================
+   HOME - HERO (parte superior)
+   ========================= */
+.hero {
+  background-color: var(--color-principal);
+  color: #ffffff;
+  /* padding distinto por lado */
+  padding-top: 60px;
+  padding-right: 80px;
+  padding-bottom: 60px;
+  padding-left: 80px;
+  border-radius: 16px;
+text-align: center; /* centra el texto */
+}
+
+/* fila de arriba: título a la izquierda, botón a la derecha */
+.hero-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-title {
+  margin-top: -25px; /* lo sube */
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.menu-btn {
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* numero saldo grande */
+.hero-balance {
+  margin: 0;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* fecha chiquita */
+.hero-date {
+  margin-top: 30px;
+  margin-bottom: -25px; /* lo baja */
+  font-size: 11px;
+  opacity: 0.9;
 }

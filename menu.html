@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- =========================
+     DOCUMENTO HTML
+     Idioma: Español
+     Proyecto: Alke Wallet
+     ========================= -->
+
+<head>
+    <!-- =========================
+       CONFIGURACIÓN BÁSICA
+       ========================= -->
+    <meta charset="UTF-8">
+    <!-- Permite que se vean bien los acentos y caracteres especiales -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Hace que la página sea responsive -->
+
+    <title>Alke Wallet</title>
+    <!-- Título que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Conecta el HTML con el archivo CSS -->
+
+</head>
+
+<body>
+    <!-- =========================
+       HEADER
+       Título y navegación principal
+       ========================= -->
+    <header>
+        <h1>Alke Wallet</h1>
+        <!-- Navegación principal -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Inicio</a>
+                </li>
+
+            </ul>
+
+        </nav>
+    </header>
+
+    <!-- =========================
+       CONTENIDO PRINCIPAL
+       ========================= -->
+    <main class="container">
+  <!-- =========================
+       HOME (referencia tipo "My Balance")
+       Arriba: saldo grande
+       Medio: tarjetas Spent/Income
+       Abajo: movimientos
+       ========================= -->
+
+  <!-- HEADER / HERO -->
+  <section class="hero">
+    <!-- Título arriba -->
+    <div class="hero-top">
+      <p class="hero-title">Mi saldo:</p>
+    </div>
+
+    <!-- Saldo grande -->
+    <p class="hero-balance">$0</p>
+
+    <!-- Fecha (texto chiquito) -->
+    <p class="hero-date">Mar, 13 Ene 2026</p>
+  </section>
+
+  <!-- SELECTOR DE CUENTAS (3 botones) -->
+<section class="account-selector">
+  <button class="account-btn active" type="button">Cuenta Corriente</button>
+  <button class="account-btn" type="button">Tarjeta de Crédito</button>
+  <button class="account-btn" type="button">Cuenta de Ahorro</button>
+</section>
+
+
+  <!-- MOVIMIENTOS -->
+  <section class="transactions">
+    <h2>Hoy</h2>
+
+    <div class="card tx-list">
+      <div class="tx-item">
+        <div>
+          <p class="tx-name">Café</p>
+          <p class="tx-sub">Pago</p>
+        </div>
+        <p class="tx-amount stat-negative">-$5.000</p>
+      </div>
+
+      <div class="tx-item">
+        <div>
+          <p class="tx-name">Sueldo</p>
+          <p class="tx-sub">Ingreso</p>
+        </div>
+        <p class="tx-amount stat-positive">$500.000</p>
+      </div>
+    </div>
+
+    <h2>Ayer</h2>
+
+    <div class="card tx-list">
+      <div class="tx-item">
+        <div>
+          <p class="tx-name">Transferencia</p>
+          <p class="tx-sub">Enviada</p>
+        </div>
+        <p class="tx-amount stat-negative">-$20.000</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+    <!-- =========================
+       FOOTER
+       ========================= -->
+    <footer>
+        <p>© 2026 Alke Wallet</p>
+
+    </footer>
+
+    <!-- =========================
+       JAVASCRIPT
+       ========================= -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

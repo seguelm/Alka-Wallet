@@ -131,3 +131,43 @@ if (loginForm) {
     window.location.href = 'menu.html';
   });
 }
+
+   
+/* =========================
+   SEND MONEY
+   ========================= */
+
+const sendMoneyForm = document.querySelector('#sendMoneyForm');
+
+if (sendMoneyForm) {
+  sendMoneyForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Inputs
+    const recipientInput = document.querySelector('#recipient');
+    const amountInput = document.querySelector('#amount');
+
+    // Mensajes
+    const errorBox = document.querySelector('#sendMoneyError');
+    const successBox = document.querySelector('#sendMoneySuccess');
+
+    // Limpiar mensajes anteriores
+    errorBox.textContent = '';
+    successBox.textContent = '';
+
+    const recipient = recipientInput.value.trim();
+    const amount = amountInput.value.trim();
+
+    // Validación básica
+    if (recipient === '' || amount === '') {
+      errorBox.textContent = 'Debes ingresar destinatario y monto';
+      return;
+    }
+
+    // Simulación de envío exitoso
+    successBox.textContent = 'Dinero enviado correctamente';
+
+    // Limpiar formulario
+    sendMoneyForm.reset();
+  });
+}

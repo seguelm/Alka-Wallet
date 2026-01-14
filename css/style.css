@@ -405,7 +405,7 @@ p {
 /* Fondo general claro */
 .send-money-page {
   min-height: 100vh;
-  background-color: #f4f7f6;
+  background-color: #d7f4f0; /* turquesa */
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* 🔑 CAMBIO: Centra verticalmente */
@@ -415,12 +415,15 @@ font-family: "Helvetica", Arial, sans-serif;
 
 /* Caja blanca centrada */
 .send-money-box {
-  display: flex;
-  flex-direction: column;   /* Asegura que el título vaya arriba y el form abajo */
-  align-items: stretch;     
+  background-color: #ffffff;
   width: 100%;
-  max-width: 400px;         /* 💡 SUGERENCIA: Limita el ancho para que no se vea gigante */
+  max-width: 560px;        /* más ancha = no se achica */
+  padding: 32px 28px;      /* menos padding = más espacio útil */
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;  /* asegura que padding no te rompa el ancho */
 }
+
 
 /*  El títulazo */
 .send-money-box h1 {
@@ -477,7 +480,7 @@ font-weight: 600; /* Un poco de grosor */
   padding: 14px;
   border-radius: 14px;
   border: none;
-  background-color: #1fb6a6; /* turquesa */
+  background-color: #FF8A00; /* naranjo */
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
@@ -521,6 +524,87 @@ font-weight: 600; /* Un poco de grosor */
 
 .hero-action-button:hover {
   opacity: 0.9;
+}
+
+/* =========================
+   AÑADIR DINERO (deposit.html)
+   ========================= */
+
+.deposit-page {
+  min-height: 100vh;
+  background-color: #d7f4f0; /* turquesa */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deposit-box {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px;     /* rectángulo más ancho */
+  padding: 48px;       /* más espacio interno */
+  border-radius: 20px; /* bordes suaves */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+
+.deposit-box h1 {
+  text-align: center;
+  margin: 0 0 24px 0;
+  color: #1FB6A6; /* turquesa */
+}
+
+.deposit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.deposit-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #333;
+  gap: 6px;
+}
+
+.deposit-form input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.deposit-form input:focus {
+  outline: none;
+  border-color: #FF8A00; /* focus naranjo */
+}
+
+.deposit-form button {
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background-color: #FF8A00; /* naranjo */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.deposit-form button:hover {
+  opacity: 0.9;
+}
+
+#depositError {
+  font-size: 0.85rem;
+  color: #b00020;
+}
+
+#depositSuccess {
+  font-size: 0.85rem;
+  color: #1b7f6a;
 }
 
 

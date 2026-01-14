@@ -171,3 +171,35 @@ if (sendMoneyForm) {
     sendMoneyForm.reset();
   });
 }
+
+/* =========================
+   DEPOSIT / AÑADIR DINERO
+   ========================= */
+
+const depositForm = document.querySelector('#depositForm');
+
+if (depositForm) {
+  depositForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const amountInput = document.querySelector('#depositAmount');
+    const errorBox = document.querySelector('#depositError');
+    const successBox = document.querySelector('#depositSuccess');
+
+    // Limpiar mensajes
+    errorBox.textContent = '';
+    successBox.textContent = '';
+
+    const amount = amountInput.value.trim();
+
+    // Validación básica
+    if (amount === '') {
+      errorBox.textContent = 'Debes ingresar un monto';
+      return;
+    }
+
+    // Simulación de depósito exitoso
+    successBox.textContent = 'Dinero añadido correctamente';
+    depositForm.reset();
+  });
+}

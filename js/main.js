@@ -98,3 +98,5 @@ accountCards.forEach((card) => {
 // Al cargar la página, mostrar cuenta por defecto
 updateHero();
 
+// Al cargar la página, mostrar montos chicos de las tarjetas
+updateAccountCards();

@@ -388,3 +388,13 @@ p {
   opacity: 0.88;
 }
 
+/* Error de login */
+.login-error{
+  margin-top: 12px;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  color: #b00020; /* rojo sobrio */
+  min-height: 1.2em; /* reserva espacio aunque esté vacío */
+}
+
+

@@ -8,55 +8,47 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <main class="send-money-page">
-  <h1>Enviar dinero</h1>
 
-  <!-- Formulario para enviar dinero -->
-<form class="send-money-form" id="sendMoneyForm">
+  <main class="send-money-page">
 
+    <div class="send-money-box">
 
-  <!-- Campo: destinatario del dinero -->
-  <!-- Puede ser nombre o email (simulación) -->
-  <label>
-    Destinatario
-    <input
-  type="text"
-  id="recipient"
-  name="recipient"
-  placeholder="Nombre o email"
-/>
+      <h1>Enviar dinero</h1>
 
-  </label>
+      <form class="send-money-form" id="sendMoneyForm">
 
-  <!-- Campo: monto a enviar -->
-  <label>
-    Monto
-    <input
-  type="number"
-  id="amount"
-  name="amount"
-  placeholder="$0"
-/>
+        <label>
+          Destinatario
+          <input
+            type="text"
+            id="recipient"
+            name="recipient"
+            placeholder="Nombre o email"
+            required
+          />
+        </label>
 
-  </label>
+        <label>
+          Monto
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            placeholder="$0"
+            required
+          />
+        </label>
 
-  <!-- Botón para enviar el dinero -->
-  <button type="submit">
-    Enviar
-  </button>
-  <!-- Mensaje de error (se muestra solo si falla la validación) -->
-<p class="send-money-error" id="sendMoneyError" aria-live="polite"></p>
+        <button type="submit">
+          Enviar
+        </button>
 
-<!-- Mensaje de éxito (se muestra cuando el envío es válido) -->
-<p class="send-money-success" id="sendMoneySuccess" aria-live="polite"></p>
+        <p class="send-money-error" id="sendMoneyError" aria-live="polite"></p>
+        <p class="send-money-success" id="sendMoneySuccess" aria-live="polite"></p>
 
+      </form> </div> </main>
 
-</form>
-
-  
-</main>
-
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>

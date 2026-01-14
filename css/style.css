@@ -398,3 +398,106 @@ p {
 }
 
 
+/* =========================
+   SEND MONEY - ESTILO
+   ========================= */
+
+/* Fondo general claro */
+.send-money-page {
+  min-height: 100vh;
+  background-color: #f4f7f6;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* 🔑 CAMBIO: Centra verticalmente */
+  padding: 20px;           /* Espaciado de seguridad para móviles */
+font-family: "Helvetica", Arial, sans-serif;
+}
+
+/* Caja blanca centrada */
+.send-money-box {
+  display: flex;
+  flex-direction: column;   /* Asegura que el título vaya arriba y el form abajo */
+  align-items: stretch;     
+  width: 100%;
+  max-width: 400px;         /* 💡 SUGERENCIA: Limita el ancho para que no se vea gigante */
+}
+
+/*  El títulazo */
+.send-money-box h1 {
+  color: #1fb6a6;
+  font-family: "Helvetica", sans-serif;
+  margin-bottom: 24px;
+}
+/* Título */
+.send-money-box h2 {
+  margin: 0 0 24px 0;
+  text-align: center;
+  color: #1fb6a6;
+}
+
+
+
+/* Formulario */
+.send-money-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Labels sobre los inputs */
+.send-money-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #333;
+  gap: 6px;
+  font-family: "Helvetica", Arial, sans-serif; /* Misma que el login */
+font-weight: 600; /* Un poco de grosor */
+}
+
+/* Inputs redondeados */
+.send-money-form input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: "Helvetica", Arial, sans-serif;
+  outline: none
+}
+
+/* Focus suave en turquesa */
+.send-money-form input:focus {
+  outline: none;
+  border-color: #1fb6a6;
+}
+
+/* Botón Enviar */
+.send-money-form button {
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background-color: #1fb6a6; /* turquesa */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Hover simple */
+.send-money-form button:hover {
+  opacity: 0.9;
+}
+
+/* Mensajes */
+.send-money-error {
+  font-size: 0.85rem;
+  color: #b00020;
+}
+
+.send-money-success {
+  font-size: 0.85rem;
+  color: #1b7f6a;
+}
+
+

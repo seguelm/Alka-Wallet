@@ -607,4 +607,79 @@ font-weight: 600; /* Un poco de grosor */
   color: #1b7f6a;
 }
 
+/* =========================
+   MOVIMIENTOS
+   ========================= */
+
+.transaction-page {
+  min-height: 100vh;
+  background-color: #d7f4f0; /* mismo fondo turquesa claro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* =========================
+   MOVIMIENTOS
+   ========================= */
+
+.transactions-page {
+  min-height: 100vh;
+  background-color: #d7f4f0; /* mismo fondo que send-money */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Caja blanca de movimientos */
+.transactions-box {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 560px;
+  padding: 32px 28px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+/* Título principal */
+.transactions-box h2 {
+  text-align: center;
+  color: #1fb6a6;
+  margin-bottom: 24px;
+}
+
+/* Alinear item a la izquierda y monto a la derecha */
+.tx-item {
+  display: flex;
+  justify-content: space-between; /* 🔑 izquierda / derecha */
+  align-items: center;
+  padding: 12px 0;
+}
+
+/* Texto del item */
+.tx-name {
+  font-weight: 600;
+}
+
+/* Subtítulo */
+.tx-sub {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Monto */
+.tx-amount {
+  font-weight: 600;
+}
+
+/* Montos en naranjo */
+.tx-amount {
+  color: #FF8A00; /* naranjo */
+}
+
+
+
 

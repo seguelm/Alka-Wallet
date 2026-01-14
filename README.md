@@ -14,9 +14,9 @@ Cuenta de Ahorro
 El saldo y la fecha cambian según la cuenta seleccionada
 
 Desde el menú se puede acceder a:
-Enviar dinero
-Añadir dinero
-Movimientos
+Enviar dinero - 
+Añadir dinero - 
+Movimientos - 
 
 3. Enviar dinero
 Ingresar destinatario (nombre o email)

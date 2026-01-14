@@ -12,6 +12,16 @@
   --color-texto: #1E2A2A;
 }
 
+/* Título Alke Wallet - menú principal */
+header h1 {
+  max-width: 560px;          /* mismo ancho que la caja de saldo */
+  margin: 24px 0 20px 0;       /* 🔑 espacio arriba y abajo */
+  padding-left: 20px;         /* 🔑 alinea visualmente con las cajas */
+  font-size: 30px;           /* un poco más grande */
+  font-weight: 700;
+  color: #FF8A00;            /* 🔥 naranjo */
+}
+
 
 /* =========================
    ESTILOS BASE DEL DOCUMENTO

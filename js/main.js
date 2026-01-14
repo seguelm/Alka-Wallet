@@ -172,8 +172,10 @@ if (sendMoneyForm) {
   });
 }
 
+
+
 /* =========================
-   DEPOSIT / AÑADIR DINERO
+   DEPOSIT - Añadir dinero
    ========================= */
 
 const depositForm = document.querySelector('#depositForm');
@@ -182,24 +184,29 @@ if (depositForm) {
   depositForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
+    // Input monto
     const amountInput = document.querySelector('#depositAmount');
+
+    // Mensajes
     const errorBox = document.querySelector('#depositError');
     const successBox = document.querySelector('#depositSuccess');
 
-    // Limpiar mensajes
+    // Limpiar mensajes anteriores
     errorBox.textContent = '';
     successBox.textContent = '';
 
     const amount = amountInput.value.trim();
 
     // Validación básica
-    if (amount === '') {
-      errorBox.textContent = 'Debes ingresar un monto';
+    if (amount === '' || Number(amount) <= 0) {
+      errorBox.textContent = 'Debes ingresar un monto válido';
       return;
     }
 
     // Simulación de depósito exitoso
     successBox.textContent = 'Dinero añadido correctamente';
+
+    // Limpiar formulario
     depositForm.reset();
   });
 }

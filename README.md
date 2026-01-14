@@ -12,6 +12,7 @@ Cuenta Corriente
 Tarjeta de Crédito
 Cuenta de Ahorro
 El saldo y la fecha cambian según la cuenta seleccionada
+
 Desde el menú se puede acceder a:
 Enviar dinero
 Añadir dinero

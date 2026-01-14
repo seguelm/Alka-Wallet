@@ -100,3 +100,34 @@ updateHero();
 
 // Al cargar la página, mostrar montos chicos de las tarjetas
 updateAccountCards();
+
+/* =========================
+   LOGIN
+   ========================= */
+
+const loginForm = document.querySelector('#loginForm');
+
+if (loginForm) {
+  loginForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const emailInput = loginForm.querySelector('input[type="email"]');
+    const passwordInput = loginForm.querySelector('input[type="password"]');
+    const errorBox = document.querySelector('#loginError');
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    // Limpia mensaje anterior
+    errorBox.textContent = '';
+
+    // Validación básica
+    if (email === '' || password === '') {
+      errorBox.textContent = 'Debes ingresar email y contraseña';
+      return;
+    }
+
+    // Simular login exitoso
+    window.location.href = 'menu.html';
+  });
+}

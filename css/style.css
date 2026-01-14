@@ -500,4 +500,27 @@ font-weight: 600; /* Un poco de grosor */
   color: #1b7f6a;
 }
 
+/* Botones dentro del HERO */
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* Botones de acción dentro del HERO */
+.hero-action-button {
+  background-color: #FF8A00; /* naranjo */
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hero-action-button:hover {
+  opacity: 0.9;
+}
+
 

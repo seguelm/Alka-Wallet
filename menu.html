@@ -30,16 +30,7 @@
        ========================= -->
     <header>
         <h1>Alke Wallet</h1>
-        <!-- Navegación principal -->
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">Inicio</a>
-                </li>
-
-            </ul>
-
-        </nav>
+        
     </header>
 
     <!-- =========================
@@ -68,6 +59,23 @@
     <!-- Fecha del saldo -->
     <!-- id usado por JS para actualizar la fecha -->
     <p class="hero-date" id="hero-date">Mar, 13 Ene 2026</p>
+
+    <!-- Acciones principales (relacionadas a la cuenta activa) -->
+<div class="hero-actions">
+ <button class="hero-action-button" type="button" onclick="window.location.href='sendmoney.html'">
+  Enviar dinero
+</button>
+
+
+  <button class="menu-action-button" type="button" onclick="window.location.href='deposit.html'">
+    Añadir dinero
+  </button>
+
+  <button class="menu-action-button" type="button" onclick="window.location.href='transactions.html'">
+    Movimientos
+  </button>
+</div>
+
 
 </section>
 
@@ -104,11 +112,9 @@
                 <!-- Monto de esta cuenta (se actualiza con JS) -->
 <p class="account-amount" data-field="amount">$0</p>
 
+
             </button>
         </section>
-
-
-    
 
 
     <!-- =========================

@@ -15,33 +15,38 @@
 
     <!-- Caja blanca centrada -->
     <section class="deposit-box">
-      <h1>Añadir dinero</h2>
+    
+      <div style="margin-bottom: 20px;">
+    <a href="menu.html" style="text-decoration: none; color: var(--color-principal); font-weight: bold;">
+        ← Volver al Menú
+    </a>
+</div>
 
-      <!-- Formulario de depósito -->
-      <form class="deposit-form" id="depositForm">
-        <!-- (inputs vienen después) -->
+<h1>Añadir dinero</h1>
 
-        <!-- Campo: monto a añadir -->
-<label>
-  Monto
-  <input
-    type="number"
-    id="depositAmount"
-    name="depositAmount"
-    placeholder="$0"
-  />
-</label>
+<form class="deposit-form" id="depositForm">
+    <label>
+        ¿A qué cuenta deseas depositar?
+        <select id="depositAccount" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
+            <option value="corriente">Cuenta Corriente</option>
+            <option value="ahorro">Cuenta de Ahorro</option>
+        </select>
+    </label>
 
-<!-- Botón para añadir dinero -->
-<button type="submit">
-  Añadir dinero
-</button>
+    <label style="margin-top: 15px; display: block;">
+        Monto
+        <input type="number" id="depositAmount" name="depositAmount" placeholder="$0" required />
+    </label>
 
-<p class="deposit-error" id="depositError"></p>
-<p class="deposit-success" id="depositSuccess"></p>
+    <div style="margin: 15px 0; font-size: 0.9rem;">
+        <a href="#" style="color: var(--color-secundario);">+ Agregar nueva tarjeta o método</a>
+    </div>
 
+    <button type="submit">Añadir dinero</button>
 
-      </form>
+    <p class="deposit-error" id="depositError"></p>
+    <p class="deposit-success" id="depositSuccess"></p>
+</form>
     </section>
 
   </main>

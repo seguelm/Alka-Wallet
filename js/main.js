@@ -1,25 +1,42 @@
 console.log('✅ main.js cargó correctamente');
 
 // ==============================
-// DATOS: saldos por cuenta (según UI)
+// ESTADO (localStorage): saldos + cuenta activa
 // ==============================
-const accountBalances = {
-  corriente: {
-    saldo: 1250000,
-    fecha: '13 Sep 2024'
-  },
-  credito: {
-    disponible: 680000,
-    fecha: '13 Sep 2024'
-  },
-  ahorro: {
-    saldo: 4500000,
-    fecha: '13 Sep 2024'
-  }
-};
+const STORAGE_KEY = 'alke_wallet_state_v1';
 
-// Cuenta activa por defecto
-let activeAccount = 'corriente';
+function getDefaultState() {
+  return {
+    activeAccount: 'corriente',
+    balances: {
+      corriente: { saldo: 1250000, fecha: '13 Sep 2024' },
+      credito: { disponible: 680000, fecha: '13 Sep 2024' },
+      ahorro: { saldo: 4500000, fecha: '13 Sep 2024' }
+    },
+    transactions: []
+  };
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return getDefaultState();
+    return JSON.parse(raw);
+  } catch (e) {
+    return getDefaultState();
+  }
+}
+
+function saveState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+
+
+// --- CONEXIÓN DE DATOS ---
+let state = loadState();
+let activeAccount = state.activeAccount || 'corriente';
+let accountBalances = state.balances; // Esto es lo que saca los montos del 0
 
 // ==============================
 // HERO: elementos + actualización
@@ -89,6 +106,11 @@ accountCards.forEach((card) => {
 
     updateAccountCards();
 
+// Forzar actualización al cargar la página
+if (accountBalances) {
+  updateHero();
+  updateAccountCards();
+}
 
     // Debug simple
     console.log('Cuenta activa:', activeAccount);
@@ -173,39 +195,54 @@ if (sendMoneyForm) {
 }
 
 
-
 /* =========================
-   DEPOSIT - Añadir dinero
+   DEPOSIT - Lógica Real (Lección 5)
    ========================= */
-
 const depositForm = document.querySelector('#depositForm');
 
 if (depositForm) {
   depositForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Evita que la página se recargue
 
-    // Input monto
     const amountInput = document.querySelector('#depositAmount');
-
-    // Mensajes
     const errorBox = document.querySelector('#depositError');
     const successBox = document.querySelector('#depositSuccess');
 
-    // Limpiar mensajes anteriores
+    // Limpiar mensajes
     errorBox.textContent = '';
     successBox.textContent = '';
 
-    const amount = amountInput.value.trim();
+    const amount = Number(amountInput.value);
 
-    // Validación básica
-    if (amount === '' || Number(amount) <= 0) {
-      errorBox.textContent = 'Debes ingresar un monto válido';
+    // 1. Validación avanzada
+    if (isNaN(amount) || amount <= 0) {
+      errorBox.textContent = 'Debes ingresar un monto válido mayor a 0';
       return;
     }
 
-    // Simulación de depósito exitoso
-    successBox.textContent = 'Dinero añadido correctamente';
+    // 2. Lógica: Sumar al saldo de la cuenta activa en el objeto "state"
+    // state.balances[activeAccount] apunta a 'corriente', 'ahorro', etc.
+    state.balances[activeAccount].saldo += amount;
 
+    // 3. Registrar la transacción para que aparezca en "Movimientos"
+    state.transactions.unshift({
+      tipo: 'Ingreso',
+      nombre: 'Depósito propio',
+      monto: amount,
+      fecha: new Date().toLocaleDateString('es-CL'),
+      cuenta: activeAccount
+    });
+
+    // 4. GUARDAR: Esto hace que el dinero no desaparezca al refrescar
+    saveState(state);
+
+   // 5. ACTUALIZAR PANTALLA (Agregado para que no quede en 0 o desactualizado)
+    updateHero();
+    updateAccountCards();
+
+    // 6. Feedback visual
+    successBox.textContent = `¡Depósito exitoso! Has sumado ${formatCLP(amount)}`;
+    
     // Limpiar formulario
     depositForm.reset();
   });

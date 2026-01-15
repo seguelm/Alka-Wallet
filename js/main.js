@@ -1,7 +1,7 @@
 console.log('✅ main.js cargó correctamente');
 
 // ==============================
-// ESTADO (localStorage): saldos + cuenta activa
+// 1. ESTADO (localStorage)
 // ==============================
 const STORAGE_KEY = 'alke_wallet_state_v1';
 
@@ -18,232 +18,154 @@ function getDefaultState() {
 }
 
 function loadState() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return getDefaultState();
-    return JSON.parse(raw);
-  } catch (e) {
-    return getDefaultState();
-  }
+  const raw = localStorage.getItem(STORAGE_KEY);
+  return raw ? JSON.parse(raw) : getDefaultState();
 }
 
-function saveState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+function saveState(stateObj) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(stateObj));
 }
 
-
-
-// --- CONEXIÓN DE DATOS ---
+// Inicialización de variables globales
 let state = loadState();
-let activeAccount = state.activeAccount || 'corriente';
-let accountBalances = state.balances; // Esto es lo que saca los montos del 0
+let activeAccount = state.activeAccount;
+// Importante: Referenciamos accountBalances directamente al estado
+let accountBalances = state.balances; 
 
 // ==============================
-// HERO: elementos + actualización
+// 2. RENDERIZADO (Interfaz)
 // ==============================
 const heroAmountEl = document.getElementById('hero-amount');
 const heroDateEl = document.getElementById('hero-date');
+const accountCards = document.querySelectorAll('.account-card');
 
-// Formato simple CLP
 function formatCLP(amount) {
   return '$' + Number(amount).toLocaleString('es-CL');
 }
 
-// Actualiza el HERO según activeAccount
 function updateHero() {
   const data = accountBalances[activeAccount];
-  if (!data) return;
+  if (!data || !heroAmountEl) return;
 
-  // En crédito mostramos "disponible"
   const value = (activeAccount === 'credito') ? data.disponible : data.saldo;
-
-  // Si por alguna razón el HTML no tiene esos ids, evitamos romper
-  if (heroAmountEl) heroAmountEl.textContent = formatCLP(value);
+  heroAmountEl.textContent = formatCLP(value);
   if (heroDateEl) heroDateEl.textContent = data.fecha;
 }
-// ==============================
-// Tarjetas: actualizar montos chicos
-// ==============================
+
 function updateAccountCards() {
   accountCards.forEach((card) => {
     const accountType = card.dataset.account;
     const data = accountBalances[accountType];
-    if (!data) return;
-
-    // Buscar el <p> del monto dentro de la tarjeta
     const amountEl = card.querySelector('[data-field="amount"]');
-    if (!amountEl) return;
+    
+    if (data && amountEl) {
+      const value = (accountType === 'credito') ? data.disponible : data.saldo;
+      amountEl.textContent = formatCLP(value);
+    }
 
-    // En crédito usamos "disponible"
-    const value =
-      accountType === 'credito'
-        ? data.disponible
-        : data.saldo;
-
-    amountEl.textContent = formatCLP(value);
+    // Aprovechamos para marcar la tarjeta activa visualmente
+    if (accountType === activeAccount) {
+      card.classList.add('active');
+    } else {
+      card.classList.remove('active');
+    }
   });
 }
 
-
 // ==============================
-// Tarjetas: selección de cuenta
+// 3. EVENTOS DE TARJETAS
 // ==============================
-const accountCards = document.querySelectorAll('.account-card');
-
 accountCards.forEach((card) => {
   card.addEventListener('click', () => {
-    // 1) Sacar active a todas
-    accountCards.forEach((c) => c.classList.remove('active'));
-
-    // 2) Poner active a la clickeada
-    card.classList.add('active');
-
-    // 3) Leer data-account del HTML (corriente/credito/ahorro)
     activeAccount = card.dataset.account;
-
-    // 4) Actualizar el HERO con la cuenta activa
+    state.activeAccount = activeAccount; // Guardamos preferencia
+    saveState(state);
+    
     updateHero();
-
     updateAccountCards();
-
-// Forzar actualización al cargar la página
-if (accountBalances) {
-  updateHero();
-  updateAccountCards();
-}
-
-    // Debug simple
     console.log('Cuenta activa:', activeAccount);
   });
 });
 
-// Al cargar la página, mostrar cuenta por defecto
-updateHero();
-
-// Al cargar la página, mostrar montos chicos de las tarjetas
-updateAccountCards();
-
-/* =========================
-   LOGIN
-   ========================= */
-
-const loginForm = document.querySelector('#loginForm');
-
-if (loginForm) {
-  loginForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const emailInput = loginForm.querySelector('input[type="email"]');
-    const passwordInput = loginForm.querySelector('input[type="password"]');
-    const errorBox = document.querySelector('#loginError');
-
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    // Limpia mensaje anterior
-    errorBox.textContent = '';
-
-    // Validación básica
-    if (email === '' || password === '') {
-      errorBox.textContent = 'Debes ingresar email y contraseña';
-      return;
-    }
-
-    // Simular login exitoso
-    window.location.href = 'menu.html';
-  });
-}
-
-   
-/* =========================
-   SEND MONEY
-   ========================= */
-
+// ==============================
+// 4. ENVÍO DE DINERO
+// ==============================
 const sendMoneyForm = document.querySelector('#sendMoneyForm');
-
 if (sendMoneyForm) {
-  sendMoneyForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    // Inputs
-    const recipientInput = document.querySelector('#recipient');
-    const amountInput = document.querySelector('#amount');
-
-    // Mensajes
+  sendMoneyForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const origin = document.querySelector('#originAccount').value;
+    const amount = Number(document.querySelector('#amount').value);
+    const recipient = document.querySelector('#recipient').value.trim();
     const errorBox = document.querySelector('#sendMoneyError');
     const successBox = document.querySelector('#sendMoneySuccess');
 
-    // Limpiar mensajes anteriores
-    errorBox.textContent = '';
-    successBox.textContent = '';
-
-    const recipient = recipientInput.value.trim();
-    const amount = amountInput.value.trim();
-
-    // Validación básica
-    if (recipient === '' || amount === '') {
-      errorBox.textContent = 'Debes ingresar destinatario y monto';
+    if (!recipient || amount <= 0) {
+      errorBox.textContent = 'Datos inválidos';
       return;
     }
 
-    // Simulación de envío exitoso
-    successBox.textContent = 'Dinero enviado correctamente';
+    if (state.balances[origin].saldo < amount) {
+      errorBox.textContent = 'Saldo insuficiente';
+      return;
+    }
 
-    // Limpiar formulario
+    state.balances[origin].saldo -= amount;
+    state.transactions.unshift({
+      tipo: 'Egreso',
+      nombre: `Transferencia a ${recipient}`,
+      monto: amount,
+      fecha: new Date().toLocaleDateString('es-CL'),
+      cuenta: origin
+    });
+
+    saveState(state);
+    updateHero();
+    updateAccountCards();
+    successBox.textContent = '¡Transferencia exitosa!';
     sendMoneyForm.reset();
   });
 }
 
-
-/* =========================
-   DEPOSIT - Lógica Real (Lección 5)
-   ========================= */
+// ==============================
+// 5. DEPÓSITO / TRANSFERENCIA INTERNA
+// ==============================
 const depositForm = document.querySelector('#depositForm');
-
 if (depositForm) {
-  depositForm.addEventListener('submit', (event) => {
-    event.preventDefault(); // Evita que la página se recargue
-
-    const amountInput = document.querySelector('#depositAmount');
+  depositForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const amount = Number(document.querySelector('#depositAmount').value);
+    const dest = document.querySelector('#depositAccount').value;
+    const from = document.querySelector('#depositFrom').value;
     const errorBox = document.querySelector('#depositError');
     const successBox = document.querySelector('#depositSuccess');
 
-    // Limpiar mensajes
-    errorBox.textContent = '';
-    successBox.textContent = '';
-
-    const amount = Number(amountInput.value);
-
-    // 1. Validación avanzada
-    if (isNaN(amount) || amount <= 0) {
-      errorBox.textContent = 'Debes ingresar un monto válido mayor a 0';
+    if (amount <= 0 || from === dest) {
+      errorBox.textContent = 'Monto inválido o cuentas iguales';
       return;
     }
 
-    // 2. Lógica: Sumar al saldo de la cuenta activa en el objeto "state"
-    // state.balances[activeAccount] apunta a 'corriente', 'ahorro', etc.
-    state.balances[activeAccount].saldo += amount;
+    const fromField = (from === 'credito') ? 'disponible' : 'saldo';
+    const destField = (dest === 'credito') ? 'disponible' : 'saldo';
 
-    // 3. Registrar la transacción para que aparezca en "Movimientos"
-    state.transactions.unshift({
-      tipo: 'Ingreso',
-      nombre: 'Depósito propio',
-      monto: amount,
-      fecha: new Date().toLocaleDateString('es-CL'),
-      cuenta: activeAccount
-    });
+    if (state.balances[from][fromField] < amount) {
+      errorBox.textContent = 'Saldo insuficiente en origen';
+      return;
+    }
 
-    // 4. GUARDAR: Esto hace que el dinero no desaparezca al refrescar
+    state.balances[from][fromField] -= amount;
+    state.balances[dest][destField] += amount;
+
     saveState(state);
-
-   // 5. ACTUALIZAR PANTALLA (Agregado para que no quede en 0 o desactualizado)
     updateHero();
     updateAccountCards();
-
-    // 6. Feedback visual
-    successBox.textContent = `¡Depósito exitoso! Has sumado ${formatCLP(amount)}`;
-    
-    // Limpiar formulario
+    successBox.textContent = '¡Dinero movido con éxito!';
     depositForm.reset();
   });
 }
+
+// ==============================
+// INICIO AUTOMÁTICO
+// ==============================
+updateHero();
+updateAccountCards();

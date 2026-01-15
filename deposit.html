@@ -30,6 +30,7 @@
         <select id="depositAccount" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
             <option value="corriente">Cuenta Corriente</option>
             <option value="ahorro">Cuenta de Ahorro</option>
+             <option value="credito">Tarjeta de Crédito</option>
         </select>
     </label>
 
@@ -38,9 +39,17 @@
         <input type="number" id="depositAmount" name="depositAmount" placeholder="$0" required />
     </label>
 
-    <div style="margin: 15px 0; font-size: 0.9rem;">
-        <a href="#" style="color: var(--color-secundario);">+ Agregar nueva tarjeta o método</a>
-    </div>
+    <label style="margin-top: 15px; display: block;">
+    Añadir dinero desde
+    <select id="depositFrom" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc;">
+        <option value="corriente">Cuenta Corriente</option>
+        <option value="ahorro">Cuenta de Ahorro</option>
+        <option value="credito">Tarjeta de Crédito</option>
+        <option value="add-card">➕ Añadir una tarjeta</option>
+    </select>
+</label>
+
+
 
     <button type="submit">Añadir dinero</button>
 

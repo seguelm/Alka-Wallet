@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Contacto | Alke Wallet</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="send-money-page">
+    <div class="send-money-box">
+      <nav style="margin-bottom: 20px;">
+        <a href="sendmoney.html" style="text-decoration: none; color: #00d1b2; font-weight: bold;">
+          ← Volver a Transferir
+        </a>
+      </nav>
+
+      <h1>Nuevo Contacto</h1>
+
+      <form id="addContactForm" class="send-money-form">
+        <label for="contactName">Nombre Completo</label>
+        <input type="text" id="contactName" placeholder="Ej: Juan Pérez" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+        
+        <label for="contactRut">RUT</label>
+        <input type="text" id="contactRut" placeholder="12.345.678-9" required style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+
+        <label for="contactBank">Banco</label>
+        <select id="contactBank" style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ccc;">
+          <option value="Alke Bank">Alke Bank</option>
+          <option value="Banco Estado">Banco Estado</option>
+          <option value="Santander">Santander</option>
+          <option value="BCI">BCI</option>
+        </select>
+
+        <button type="submit" style="background-color: #00d1b2; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer;">
+          Guardar y Continuar
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

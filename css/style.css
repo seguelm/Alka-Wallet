@@ -690,6 +690,53 @@ font-weight: 600; /* Un poco de grosor */
   color: #FF8A00; /* naranjo */
 }
 
+<button id="openContactModal" class="btn-add-contact">+ Añadir nuevo contacto</button>
 
+<div id="contactModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <h3>Nuevo Contacto</h3>
+    <hr>
+    <form id="addContactForm">
+      <div class="form-group">
+        <label>Nombre Completo</label>
+        <input type="text" id="contactName" placeholder="Ej: Juan Pérez" required>
+      </div>
+      <div class="form-group">
+        <label>RUT</label>
+        <input type="text" id="contactRut" placeholder="12.345.678-9" required>
+      </div>
+      <div class="form-group">
+        <label>Banco</label>
+        <select id="contactBank">
+          <option value="Alke Bank">Alke Bank</option>
+          <option value="Banco Estado">Banco Estado</option>
+          <option value="Santander">Santander</option>
+          <option value="BCI">BCI</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="closeContactModal" class="btn-cancel">Cancelar</button>
+        <button type="submit" class="btn-save">Guardar Contacto</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+.btn-link-contacto {
+    background: none;
+    border: none;
+    color: #2cc185; /* El turquesa de tu página */
+    text-decoration: underline;
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 5px 0;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+}
+
+.btn-link-contacto:hover {
+    color: #24a16f;
+}
 
 

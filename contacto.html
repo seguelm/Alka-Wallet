@@ -1,82 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agregar Contacto | Alke Wallet</title>
-  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Contacto | Alke Wallet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-light">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html" style="color: #00d1b2;">Alke Wallet</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link active" href="enviar-dinero.html">Transferir</a></li>
-          <li class="nav-item"><a class="nav-link" href="movimientos.html">Movimientos</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <main class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-lg-5">
-        
-        <div class="card shadow border-0 p-4">
-          
-          <nav class="mb-4">
-            <a href="enviar-dinero.html" class="text-decoration-none fw-bold" style="color: #00d1b2;">
-              ← Volver a Transferir
-            </a>
-          </nav>
-
-          <h1 class="h3 mb-4 fw-bold text-center">Nuevo Contacto</h1>
-
-          <form id="addContactForm">
-            <div class="mb-3">
-              <label for="contactName" class="form-label fw-semibold">Nombre Completo</label>
-              <input type="text" id="contactName" class="form-control form-control-lg" placeholder="Ej: Juan Pérez" required>
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="menu.html" style="color: #00d1b2;">Alke Wallet</a>
+            <div class="ms-auto">
+                <a href="sendmoney.html" class="btn btn-outline-light btn-sm">Cancelar</a>
             </div>
-            
-            <div class="mb-3">
-              <label for="contactRut" class="form-label fw-semibold">RUT</label>
-              <input type="text" id="contactRut" class="form-control form-control-lg" placeholder="12.345.678-9" required>
-            </div>
-
-            <div class="mb-4">
-              <label for="contactBank" class="form-label fw-semibold">Banco</label>
-              <select id="contactBank" class="form-select form-select-lg">
-                <option value="Alke Bank">Alke Bank</option>
-                <option value="Banco Estado">Banco Estado</option>
-                <option value="Santander">Santander</option>
-                <option value="BCI">BCI</option>
-              </select>
-            </div>
-
-            <button type="submit" class="btn btn-lg w-100 fw-bold text-white border-0 shadow-sm" style="background-color: #00d1b2;">
-              Guardar y Continuar
-            </button>
-          </form>
-
-        </div> <div class="text-center mt-3">
-          <a href="menu.html" class="text-muted small text-decoration-none">Ir al Menú Principal</a>
         </div>
+    </nav>
 
-      </div>
-    </div>
-  </main>
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow border-0 p-4 rounded-4">
+                    <h2 class="h4 fw-bold mb-4 text-center">Nuevo Contacto</h2>
+                    
+                    <div id="contactSuccess" class="alert alert-success d-none" role="alert">
+                        ✅ Contacto añadido exitosamente. Volviendo a transferencias...
+                    </div>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js"></script>
+                    <form id="addContactForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nombre Completo</label>
+                            <input type="text" id="contactName" class="form-control" placeholder="Ej: Juan Pérez" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">RUT</label>
+                            <input type="text" id="contactRut" class="form-control" placeholder="12.345.678-9" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Banco</label>
+                            <select id="contactBank" class="form-select">
+                                <option value="Alke Bank">Alke Bank</option>
+                                <option value="Banco Estado">Banco Estado</option>
+                                <option value="Santander">Santander</option>
+                                <option value="BCI">BCI</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-lg w-100 text-white fw-bold shadow-sm" style="background-color: #00d1b2; border: none;">
+                            Guardar Contacto
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

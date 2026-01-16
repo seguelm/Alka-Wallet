@@ -3,27 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Depósito | Alke Wallet</title>
-
+  <title>Añadir Dinero | Alke Wallet</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body class="bg-light">
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
     <div class="container">
       <a class="navbar-brand fw-bold" href="menu.html" style="color: #00d1b2;">Alke Wallet</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="menu.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="enviar-dinero.html">Transferir</a></li>
-          <li class="nav-item"><a class="nav-link" href="movimientos.html">Movimientos</a></li>
-        </ul>
+      <div class="ms-auto">
+        <a href="menu.html" class="btn btn-outline-light btn-sm">Volver al Inicio</a>
       </div>
     </div>
   </nav>
@@ -35,16 +25,26 @@
         <div class="card shadow border-0 rounded-4 overflow-hidden">
           <div class="p-4 text-white text-center" style="background: linear-gradient(135deg, #0d6efd 0%, #00d1b2 100%);">
             <h1 class="h3 mb-0 fw-bold">Añadir dinero</h1>
-            <p class="small mb-0 opacity-75">Carga saldo a tus cuentas</p>
+            <p class="small mb-0 opacity-75">Carga saldo a tu cuenta de forma segura</p>
           </div>
 
           <div class="card-body p-4">
             <form id="depositForm">
 
               <div class="mb-3">
-                <label for="depositAccount" class="form-label fw-bold">¿A qué cuenta deseas añadir?</label>
+                <label class="form-label fw-bold">¿Desde dónde quieres añadir?</label>
+                <select id="depositSource" class="form-select form-select-lg mb-2">
+                  <option value="external_card">💳 Nueva Tarjeta de Débito/Crédito</option>
+                  <option value="transfer">🏦 Transferencia de otro Banco</option>
+                  <option value="internal_credit">🔄 Desde mi Tarjeta de Crédito Alke</option>
+                </select>
+                <a href="#" class="text-decoration-none small fw-bold" style="color: #00d1b2;">+ Agregar nuevo método</a>
+              </div>
+
+              <div class="mb-3">
+                <label for="depositAccount" class="form-label fw-bold">Cuenta de destino en Alke Wallet</label>
                 <select id="depositAccount" class="form-select">
-                  <option value="corriente">Cuenta Corriente</option>
+                  <option value="corriente">Cuenta Corriente (Principal)</option>
                   <option value="ahorro">Cuenta de Ahorro</option>
                 </select>
               </div>
@@ -52,19 +52,19 @@
               <div class="mb-4">
                 <label for="depositAmount" class="form-label fw-bold">Monto a depositar</label>
                 <div class="input-group input-group-lg">
-                  <span class="input-group-text bg-white">$</span>
+                  <span class="input-group-text bg-white border-end-0">$</span>
                   <input
                     type="number"
                     id="depositAmount"
                     name="depositAmount"
-                    class="form-control"
+                    class="form-control border-start-0"
                     placeholder="0"
                     required
                   />
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm" style="background-color: #00d1b2; border: none;">
+              <button type="submit" class="btn btn-lg w-100 text-white fw-bold shadow-sm" style="background-color: #00d1b2; border: none;">
                 Confirmar Depósito
               </button>
 
@@ -75,19 +75,11 @@
 
             </form>
           </div>
-
-          <div class="card-footer bg-white border-0 text-center pb-4">
-            <a href="menu.html" class="text-muted small text-decoration-none">← Volver al Menú Principal</a>
-          </div>
         </div>
 
       </div>
     </div>
   </main>
-
-  <footer class="container text-center py-4 text-muted">
-    <p class="small">© 2026 Alke Wallet - Tu dinero, tus reglas</p>
-  </footer>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

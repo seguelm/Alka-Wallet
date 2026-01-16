@@ -1,241 +1,126 @@
-console.log('✅ main.js cargó correctamente');
-
-// ==============================
-// DATOS: saldos por cuenta (según UI)
-// ==============================
-const accountBalances = {
-  corriente: {
-    saldo: 1250000,
-    fecha: '13 Sep 2024'
-  },
-  credito: {
-    disponible: 680000,
-    fecha: '13 Sep 2024'
-  },
-  ahorro: {
-    saldo: 4500000,
-    fecha: '13 Sep 2024'
-  }
-};
-
-// Cuenta activa por defecto
-let activeAccount = 'corriente';
-
-// ==============================
-// HERO: elementos + actualización
-// ==============================
-const heroAmountEl = document.getElementById('hero-amount');
-const heroDateEl = document.getElementById('hero-date');
-
-// Formato simple CLP
-function formatCLP(amount) {
-  return '$' + Number(amount).toLocaleString('es-CL');
-}
-
-// Actualiza el HERO según activeAccount
-function updateHero() {
-  const data = accountBalances[activeAccount];
-  if (!data) return;
-
-  // En crédito mostramos "disponible"
-  const value = (activeAccount === 'credito') ? data.disponible : data.saldo;
-
-  // Si por alguna razón el HTML no tiene esos ids, evitamos romper
-  if (heroAmountEl) heroAmountEl.textContent = formatCLP(value);
-  if (heroDateEl) heroDateEl.textContent = data.fecha;
-}
-// ==============================
-// Tarjetas: actualizar montos chicos
-// ==============================
-function updateAccountCards() {
-  accountCards.forEach((card) => {
-    const accountType = card.dataset.account;
-    const data = accountBalances[accountType];
-    if (!data) return;
-
-    // Buscar el <p> del monto dentro de la tarjeta
-    const amountEl = card.querySelector('[data-field="amount"]');
-    if (!amountEl) return;
-
-    // En crédito usamos "disponible"
-    const value =
-      accountType === 'credito'
-        ? data.disponible
-        : data.saldo;
-
-    amountEl.textContent = formatCLP(value);
-  });
-}
-
-
-// ==============================
-// Tarjetas: selección de cuenta
-// ==============================
-const accountCards = document.querySelectorAll('.account-card');
-
-accountCards.forEach((card) => {
-  card.addEventListener('click', () => {
-    // 1) Sacar active a todas
-    accountCards.forEach((c) => c.classList.remove('active'));
-
-    // 2) Poner active a la clickeada
-    card.classList.add('active');
-
-    // 3) Leer data-account del HTML (corriente/credito/ahorro)
-    activeAccount = card.dataset.account;
-
-    // 4) Actualizar el HERO con la cuenta activa
-    updateHero();
-
-    updateAccountCards();
-
-
-    // Debug simple
-    console.log('Cuenta activa:', activeAccount);
-  });
-});
-
-// Al cargar la página, mostrar cuenta por defecto
-updateHero();
-
-// Al cargar la página, mostrar montos chicos de las tarjetas
-updateAccountCards();
-
-/* =========================
-   LOGIN
-   ========================= */
-
-const loginForm = document.querySelector('#loginForm');
-
-if (loginForm) {
-  loginForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const emailInput = loginForm.querySelector('input[type="email"]');
-    const passwordInput = loginForm.querySelector('input[type="password"]');
-    const errorBox = document.querySelector('#loginError');
-
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    // Limpia mensaje anterior
-    errorBox.textContent = '';
-
-    // Validación básica
-    if (email === '' || password === '') {
-      errorBox.textContent = 'Debes ingresar email y contraseña';
-      return;
-    }
-
-    // Simular login exitoso
-    window.location.href = 'menu.html';
-  });
-}
-
-   
-/* =========================
-   SEND MONEY
-   ========================= */
-
-const sendMoneyForm = document.querySelector('#sendMoneyForm');
-
-if (sendMoneyForm) {
-  sendMoneyForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    // Inputs
-    const recipientInput = document.querySelector('#recipient');
-    const amountInput = document.querySelector('#amount');
-
-    // Mensajes
-    const errorBox = document.querySelector('#sendMoneyError');
-    const successBox = document.querySelector('#sendMoneySuccess');
-
-    // Limpiar mensajes anteriores
-    errorBox.textContent = '';
-    successBox.textContent = '';
-
-    const recipient = recipientInput.value.trim();
-    const amount = amountInput.value.trim();
-
-    // Validación básica
-    if (recipient === '' || amount === '') {
-      errorBox.textContent = 'Debes ingresar destinatario y monto';
-      return;
-    }
-
-    // Simulación de envío exitoso
-    successBox.textContent = 'Dinero enviado correctamente';
-
-    // Limpiar formulario
-    sendMoneyForm.reset();
-  });
-}
-
-
-
-/* =========================
-   DEPOSIT - Añadir dinero
-   ========================= */
-
-const depositForm = document.querySelector('#depositForm');
-
-if (depositForm) {
-  depositForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    // Input monto
-    const amountInput = document.querySelector('#depositAmount');
-
-    // Mensajes
-    const errorBox = document.querySelector('#depositError');
-    const successBox = document.querySelector('#depositSuccess');
-
-    // Limpiar mensajes anteriores
-    errorBox.textContent = '';
-    successBox.textContent = '';
-
-    const amount = amountInput.value.trim();
-
-    // Validación básica
-    if (amount === '' || Number(amount) <= 0) {
-      errorBox.textContent = 'Debes ingresar un monto válido';
-      return;
-    }
-
-    // Simulación de depósito exitoso
-    successBox.textContent = 'Dinero añadido correctamente';
-
-    // Limpiar formulario
-    depositForm.reset();
-
-    // --- IMPLEMENTACIÓN JQUERY (Lección 6) ---
 $(document).ready(function() {
-    console.log("jQuery cargado y listo para Alke Wallet");
+    console.log("✅ Alke Wallet: Sistema iniciado y saldos recuperados.");
 
-    // 1. Animación de "Brillo" en el saldo (Lección 6 - Animaciones)
-    // Cuando se envía cualquier formulario, el saldo resalta
-    $('form').on('submit', function() {
-        $('#hero-amount').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    // ==========================================
+    // 1. FORZAR SALDOS INICIALES (Si están en 0 o vacíos)
+    // ==========================================
+    function inicializarSaldos() {
+        const saldosBase = {
+            corriente: { saldo: 1250000, fecha: '16 Ene 2026' },
+            credito: { disponible: 680000, fecha: '16 Ene 2026' },
+            ahorro: { saldo: 4500000, fecha: '16 Ene 2026' }
+        };
+        localStorage.setItem('alke_balances', JSON.stringify(saldosBase));
+        return saldosBase;
+    }
+
+    // Intentar cargar de localStorage, si falla o está vacío, inicializar
+    let dataGuardada = localStorage.getItem('alke_balances');
+    let accountBalances = dataGuardada ? JSON.parse(dataGuardada) : inicializarSaldos();
+
+    let activeAccount = 'corriente';
+
+    // ==========================================
+    // 2. ACTUALIZACIÓN DE LA INTERFAZ
+    // ==========================================
+    function updateUI() {
+        const data = accountBalances[activeAccount];
+        const displayValue = (activeAccount === 'credito') ? data.disponible : data.saldo;
+        
+        // Actualizar Hero (Monto grande)
+        if ($('#hero-amount').length) {
+            $('#hero-amount').text('$' + displayValue.toLocaleString('es-CL'));
+        }
+        
+        // Actualizar tarjetas pequeñas
+        $('.account-card').each(function() {
+            const type = $(this).data('account');
+            const info = accountBalances[type];
+            if (info) {
+                const val = (type === 'credito') ? info.disponible : info.saldo;
+                $(this).find('[data-field="amount"]').text('$' + val.toLocaleString('es-CL'));
+            }
+        });
+    }
+
+    // ==========================================
+    // 3. LÓGICA DE CONTACTOS (RUT INCLUIDO)
+    // ==========================================
+    function cargarContactos() {
+        const $select = $('#recipient');
+        if ($select.length) {
+            const contactos = JSON.parse(localStorage.getItem('alke_contacts')) || [];
+            $select.html('<option value="" disabled selected>Selecciona un contacto</option>');
+            contactos.forEach(c => {
+                $select.append(`<option value="${c.nombre}">${c.nombre} (${c.rut})</option>`);
+            });
+        }
+    }
+
+    $('#addContactForm').on('submit', function(e) {
+        e.preventDefault();
+        const nuevo = {
+            nombre: $('#contactName').val(),
+            rut: $('#contactRut').val(),
+            banco: $('#contactBank').val()
+        };
+
+        let lista = JSON.parse(localStorage.getItem('alke_contacts')) || [];
+        lista.push(nuevo);
+        localStorage.setItem('alke_contacts', JSON.stringify(lista));
+
+        // MOSTRAR MENSAJE DE ÉXITO
+        $('#contactSuccess').removeClass('d-none').hide().fadeIn();
+        
+        setTimeout(() => {
+            window.location.href = 'sendmoney.html';
+        }, 2000);
     });
 
-    // 2. Validación visual dinámica (Lección 6 - Optimización de eventos)
-    // Cambia el color del borde mientras el usuario escribe el monto
-    $('#amount, #depositAmount').on('input', function() {
-        let valor = $(this).val();
-        if (valor > 0) {
-            $(this).css('border-color', '#00d1b2'); // Verde Alke
-        } else {
-            $(this).css('border-color', '#ff3860'); // Rojo error
+    // ==========================================
+    // 4. OPERACIONES Y EVENTOS
+    // ==========================================
+
+    // Cambio de cuenta al hacer clic
+    $('.account-card').on('click', function() {
+        $('.account-card').removeClass('active');
+        $(this).addClass('active');
+        activeAccount = $(this).data('account');
+        updateUI();
+    });
+
+    // Depósito
+    $('#depositForm').on('submit', function(e) {
+        e.preventDefault();
+        const monto = parseInt($('#depositAmount').val());
+        if (monto > 0) {
+            if (activeAccount === 'credito') accountBalances.credito.disponible += monto;
+            else accountBalances[activeAccount].saldo += monto;
+            localStorage.setItem('alke_balances', JSON.stringify(accountBalances));
+            updateUI();
+            $('#depositSuccess').text(`+$${monto.toLocaleString()} añadidos.`).removeClass('d-none');
+            this.reset();
         }
     });
 
-    // 3. Efecto de Hover en tarjetas con jQuery
-    $('.account-card').hover(
-        function() { $(this).addClass('shadow-lg').css('cursor', 'pointer'); },
-        function() { $(this).removeClass('shadow-lg'); }
-    );
-});
+    // Envío
+    $('#sendMoneyForm').on('submit', function(e) {
+        e.preventDefault();
+        const monto = parseInt($('#amount').val());
+        const dest = $('#recipient').val();
+        const saldoAct = (activeAccount === 'credito') ? accountBalances.credito.disponible : accountBalances[activeAccount].saldo;
 
-  });
-}
+        if (monto > 0 && monto <= saldoAct && dest) {
+            if (activeAccount === 'credito') accountBalances.credito.disponible -= monto;
+            else accountBalances[activeAccount].saldo -= monto;
+            localStorage.setItem('alke_balances', JSON.stringify(accountBalances));
+            updateUI();
+            $('#sendMoneySuccess').text(`Envío exitoso a ${dest}`).removeClass('d-none');
+            this.reset();
+        }
+    });
+
+    // Inicializar visualmente
+    updateUI();
+    cargarContactos();
+});

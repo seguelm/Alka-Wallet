@@ -208,5 +208,34 @@ if (depositForm) {
 
     // Limpiar formulario
     depositForm.reset();
+
+    // --- IMPLEMENTACIÓN JQUERY (Lección 6) ---
+$(document).ready(function() {
+    console.log("jQuery cargado y listo para Alke Wallet");
+
+    // 1. Animación de "Brillo" en el saldo (Lección 6 - Animaciones)
+    // Cuando se envía cualquier formulario, el saldo resalta
+    $('form').on('submit', function() {
+        $('#hero-amount').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    });
+
+    // 2. Validación visual dinámica (Lección 6 - Optimización de eventos)
+    // Cambia el color del borde mientras el usuario escribe el monto
+    $('#amount, #depositAmount').on('input', function() {
+        let valor = $(this).val();
+        if (valor > 0) {
+            $(this).css('border-color', '#00d1b2'); // Verde Alke
+        } else {
+            $(this).css('border-color', '#ff3860'); // Rojo error
+        }
+    });
+
+    // 3. Efecto de Hover en tarjetas con jQuery
+    $('.account-card').hover(
+        function() { $(this).addClass('shadow-lg').css('cursor', 'pointer'); },
+        function() { $(this).removeClass('shadow-lg'); }
+    );
+});
+
   });
 }

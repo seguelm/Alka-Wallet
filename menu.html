@@ -1,137 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- =========================
-     DOCUMENTO HTML
-     Idioma: Español
-     Proyecto: Alke Wallet
-     ========================= -->
 
 <head>
-    <!-- =========================
-       CONFIGURACIÓN BÁSICA
-       ========================= -->
     <meta charset="UTF-8">
-    <!-- Permite que se vean bien los acentos y caracteres especiales -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Hace que la página sea responsive -->
+    <title>Alke Wallet | Mi Panel</title>
 
-    <title>Alke Wallet</title>
-    <!-- Título que aparece en la pestaña del navegador -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
-    <!-- Conecta el HTML con el archivo CSS -->
-
 </head>
 
-<body>
-    <!-- =========================
-       HEADER
-       Título y navegación principal
-       ========================= -->
-    <header>
-        <h1>Alke Wallet</h1>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="menu.html" style="color: #00d1b2;">Alke Wallet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="menu.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="enviar-dinero.html">Transferir</a></li>
+                    <li class="nav-item"><a class="nav-link" href="movimientos.html">Movimientos</a></li>
+                    <li class="nav-item"><a class="nav-link text-danger" href="index.html">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
         
-    </header>
-
-    <!-- =========================
-       CONTENIDO PRINCIPAL
-       ========================= -->
-    <main class="container">
-        <!-- =========================
-       HOME (referencia tipo "My Balance")
-       Arriba: saldo grande
-       Medio: tarjetas Spent/Income
-       Abajo: movimientos
-       ========================= -->
-
-        <!-- HEADER / HERO -->
-<section class="hero">
-
-    <!-- Título arriba -->
-    <div class="hero-top">
-        <p class="hero-title">Mi saldo:</p>
-    </div>
-
-    <!-- Saldo grande del HERO -->
-    <!-- id usado por JS para cambiar el monto según la cuenta activa -->
-    <p class="hero-balance" id="hero-amount">$0</p>
-
-    <!-- Fecha del saldo -->
-    <!-- id usado por JS para actualizar la fecha -->
-    <p class="hero-date" id="hero-date">Mar, 13 Ene 2026</p>
-
-    <!-- Acciones principales (relacionadas a la cuenta activa) -->
-<div class="hero-actions">
- <button class="hero-action-button" type="button" onclick="window.location.href='sendmoney.html'">
-  Enviar dinero
-</button>
-
-
-  <button class="hero-action-button" type="button" onclick="window.location.href='deposit.html'">
-    Añadir dinero
-  </button>
-
-  <button class="hero-action-button" type="button" onclick="window.location.href='transactions.html'">
-    Movimientos
-  </button>
-</div>
-
-
-</section>
-
-
-        <!-- =========================
-         CUENTAS (CAJITAS)
-         ========================= -->
-
-        <section class="accounts" aria-label="Cuentas">
-
-            <!-- Tarjeta: Cuenta Corriente -->
-            <!-- data-account le dice a JS qué tipo de cuenta es -->
-            <button class="account-card active" type="button" data-account="corriente">
-                <p class="account-name">Cuenta Corriente</p>
-                <p class="account-label">Saldo </p>
-                <!-- Monto de esta cuenta (se actualiza con JS) -->
-<p class="account-amount" data-field="amount">$0</p>
-
-            </button>
-
-            <!-- Tarjeta: Tarjeta de Crédito -->
-            <button class="account-card" type="button" data-account="credito">
-
-                <p class="account-name">Tarjeta de Crédito</p>
-                <p class="account-label">Disponible</p>
-               <!-- Monto de esta cuenta (se actualiza con JS) -->
-<p class="account-amount" data-field="amount">$0</p>
-            </button>
-
-            <!-- Tarjeta: Cuenta de Ahorro -->
-            <button class="account-card" type="button" data-account="ahorro">
-                <p class="account-name">Cuenta de Ahorro</p>
-                <p class="account-label">Saldo</p>
-                <!-- Monto de esta cuenta (se actualiza con JS) -->
-<p class="account-amount" data-field="amount">$0</p>
-
-
-            </button>
+        <section class="p-5 mb-4 rounded-4 shadow-sm text-white" style="background: linear-gradient(135deg, #00d1b2 0%, #009e86 100%);">
+            <div class="container-fluid py-2 text-center">
+                <p class="mb-1 opacity-75 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Mi saldo actual:</p>
+                <h1 class="display-3 fw-bold mb-2" id="hero-amount">$0</h1>
+                <p class="mb-4 opacity-75" id="hero-date">Mar, 13 Ene 2026</p>
+                
+                <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                    <button class="btn btn-light btn-lg px-4 fw-bold shadow-sm" onclick="window.location.href='enviar-dinero.html'">
+                        Enviar dinero
+                    </button>
+                    <button class="btn btn-outline-light btn-lg px-4 fw-bold" onclick="window.location.href='depositar.html'">
+                        Añadir dinero
+                    </button>
+                    <button class="btn btn-link text-white text-decoration-none fw-bold" onclick="window.location.href='movimientos.html'">
+                        Ver movimientos →
+                    </button>
+                </div>
+            </div>
         </section>
 
+        <h4 class="fw-bold mb-4 text-secondary">Selecciona una cuenta:</h4>
+        <div class="row g-3">
+            
+            <div class="col-12 col-md-4">
+                <button class="card account-card active w-100 border-0 shadow-sm p-3 text-start transition-all" 
+                        type="button" data-account="corriente" style="border-left: 5px solid #00d1b2 !important;">
+                    <div class="card-body p-0">
+                        <p class="text-muted mb-1 small fw-bold">Cuenta Corriente</p>
+                        <p class="text-secondary mb-1 small">Saldo</p>
+                        <h3 class="fw-bold m-0" data-field="amount" style="color: #009e86;">$0</h3>
+                    </div>
+                </button>
+            </div>
 
-    <!-- =========================
-       FOOTER
-       ========================= -->
-    <footer>
-        <p>© 2026 Alke Wallet</p>
+            <div class="col-12 col-md-4">
+                <button class="card account-card w-100 border-0 shadow-sm p-3 text-start transition-all" 
+                        type="button" data-account="credito" style="border-left: 5px solid #343a40 !important;">
+                    <div class="card-body p-0">
+                        <p class="text-muted mb-1 small fw-bold">Tarjeta de Crédito</p>
+                        <p class="text-secondary mb-1 small">Disponible</p>
+                        <h3 class="fw-bold m-0 text-dark" data-field="amount">$0</h3>
+                    </div>
+                </button>
+            </div>
 
+            <div class="col-12 col-md-4">
+                <button class="card account-card w-100 border-0 shadow-sm p-3 text-start transition-all" 
+                        type="button" data-account="ahorro" style="border-left: 5px solid #0d6efd !important;">
+                    <div class="card-body p-0">
+                        <p class="text-muted mb-1 small fw-bold">Cuenta de Ahorro</p>
+                        <p class="text-secondary mb-1 small">Saldo</p>
+                        <h3 class="fw-bold m-0 text-primary" data-field="amount">$0</h3>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="container text-center py-4 text-muted border-top mt-5">
+        <p class="small">© 2026 Alke Wallet - Tu banca digital</p>
     </footer>
 
-    <!-- =========================
-       JAVASCRIPT
-       ========================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 
-  
-
 </body>
-
 </html>

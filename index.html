@@ -1,133 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- =========================
-     DOCUMENTO HTML
-     Idioma: Español
-     Proyecto: Alke Wallet
-     ========================= -->
 
 <head>
-    <!-- =========================
-       CONFIGURACIÓN BÁSICA
-       ========================= -->
     <meta charset="UTF-8">
-    <!-- Permite que se vean bien los acentos y caracteres especiales -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Hace que la página sea responsive -->
+    <title>Alke Wallet | Inicio</title>
 
-    <title>Alke Wallet</title>
-    <!-- Título que aparece en la pestaña del navegador -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
-    <!-- Conecta el HTML con el archivo CSS -->
-
 </head>
 
-<body>
-    <!-- =========================
-       HEADER
-       Título y navegación principal
-       ========================= -->
-    <header>
-        <h1>Alke Wallet</h1>
-        <!-- Navegación principal -->
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">Inicio</a>
-                </li>
-
-            </ul>
-
-        </nav>
-    </header>
-
-    <!-- =========================
-       CONTENIDO PRINCIPAL
-       ========================= -->
-    <main class="container">
-        <!-- 
-      container:
-      - centra el contenido
-      - controla el ancho
-      - hace que se vea ordenado
-    -->
-
-    <!-- TÍTULO GENERAL DE LA PANTALLA -->
-    <h2>Resumen</h2>
-    <!-- =========================
-         GRID DE TARJETAS
-         Aquí van varias "cards"
-         ========================= -->
-    <section class="grid">
-      <!-- 
-        grid:
-        - es solo un contenedor
-        - agrupa las tarjetas
-        - luego con CSS se ordena
-      -->
-
-      <!-- =========================
-           CARD 1: SALDO
-           ========================= -->
-      <div class="card resumen">
-        <!-- 
-          card:
-          - es una tarjeta
-          - todo lo que esté dentro se ve como un bloque
-        -->
-
-<!-- CARD 1: SALDO -->
-        <h3>Saldo</h3>
-        <p>
-          Saldo disponible:
-          <!-- 
-            span:
-            - encierra SOLO el número
-            - permite darle estilo
-              sin afectar el texto
-          -->
-          <span class="saldo">$0</span>
-        </p>
+<body class="bg-light"> <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html" style="color: #00d1b2;">Alke Wallet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="enviar-dinero.html">Transferir</a></li>
+                    <li class="nav-item"><a class="nav-link" href="movimientos.html">Movimientos</a></li>
+                </ul>
+            </div>
         </div>
-<!-- =========================
-           CARD 2: MOVIMIENTOS
-           ========================= -->
-      <div class="card">
-        <h3>Movimientos</h3>
-        <p>
-          Aquí van tus movimientos recientes.
-        </p>
-      </div>
+    </nav>
 
-      <!-- =========================
-           CARD 3: ACCIONES
-           ========================= -->
-      <div class="card">
-        <h3>Acciones</h3>
-        <p>
-          Enviar, recibir, pagar, etc.
-          (después se transforman en botones)
-        </p>
-      </div>
-    </section>
+    <main class="container my-5">
+        <header class="mb-4">
+            <h2 class="fw-bold">Resumen de cuenta</h2>
+            <p class="text-muted">Bienvenido de vuelta a tu billetera digital.</p>
+        </header>
 
-    
-    </main>
+        <div class="row g-4">
+            
+            <div class="col-12 col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">Saldo Total</h5>
+                        <h2 class="display-6 fw-bold text-dark" id="hero-amount">$0</h2>
+                        <p class="card-text text-success small">▲ 1.2% este mes</p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- =========================
-       FOOTER
-       ========================= -->
-    <footer>
-        <p>© 2026 Alke Wallet</p>
+            <div class="col-12 col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">Último Movimiento</h5>
+                        <p class="card-text">Transferencia enviada</p>
+                        <a href="movimientos.html" class="btn btn-sm btn-outline-primary">Ver historial</a>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-12 col-md-4">
+                <div class="card h-100 shadow-sm border-0 bg-primary text-white" style="background-color: #00d1b2 !important;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title text-white-50">Acciones</h5>
+                        <div class="d-grid gap-2">
+                            <a href="enviar-dinero.html" class="btn btn-light fw-bold">Enviar Dinero</a>
+                            <a href="depositar.html" class="btn btn-outline-light">Depositar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> </main>
+
+    <footer class="container text-center py-4 border-top mt-5">
+        <p class="text-muted small">© 2026 Alke Wallet - Todos los derechos reservados</p>
     </footer>
 
-    <!-- =========================
-       JAVASCRIPT
-       ========================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 
 </body>
-
 </html>
